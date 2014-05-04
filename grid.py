@@ -38,3 +38,5 @@ class Space:
         rect(x,y,10,10)
     def setPiece(self,piece):
         self.piece = piece
+        if piece is None:
+            self.free = False

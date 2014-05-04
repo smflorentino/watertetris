@@ -11,16 +11,19 @@ GRID_COUNT_Y = 35
 GRID_OFFSET_X = 200
 GRID_OFFSET_Y = 0
 
+#Frequency of auto-drop (60 = 1 second)
+DROP_SPEED = 30
+
 PIECE_WIDTH = 80
 PIECE_HEIGHT = 40
 
-UP = 65362
-LEFT = 65361
-DOWN = 65364
-RIGHT = 65363
+KEY_UP = 65362
+KEY_LEFT = 65361
+KEY_DOWN = 65364
+KEY_RIGHT = 65363
 
-iImg = loadImage("1.png")
-oImg = loadImage("4.png")
+# iImg = loadImage("1.png")
+# oImg = loadImage("4.png")
 
 class Shape:
     O = 0
