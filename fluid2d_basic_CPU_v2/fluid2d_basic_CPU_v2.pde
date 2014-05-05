@@ -20,6 +20,7 @@
 import diewald_fluid.Fluid2D;
 import diewald_fluid.Fluid2D_CPU;
 import diewald_fluid.Fluid2D_GPU;
+import java.util.Random;
 
 int  CPU_GPU        = 1; // 0 is GPU, 1 is CPU;
 int  fluid_size_x = 150; 
@@ -33,6 +34,15 @@ Fluid2D fluid;
 PImage output_densityMap;
 boolean edit_quader = false;
 
+int counter = 0;
+int Y = 0;
+/* Tetris Data*/
+Piece curPiece;
+int vx = 0;
+int vy = 0;
+Random random = new Random();
+int pieceType;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public void setup() {
   size(window_size_x, window_size_y, JAVA2D);
@@ -40,6 +50,10 @@ public void setup() {
 
   fluid = createFluidSolver(CPU_GPU);
   frameRate(60);
+  
+  /* Tetris Code */
+  initGrid();
+  curPiece = new Piece(vx,vy,1);
 }
 
 
@@ -47,16 +61,15 @@ public void setup() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public void draw() {
   background(255);
+    
   if ( mousePressed ) 
     fluidInfluence(fluid);
   float speed = .1;
   
   int off = 15;
-  setVel (fluid,       off,        Y, 2, 2, speed, 0);
-  setDens(fluid,       off,        Y, 3, 3, 1, 0, 0);
-  counter++;
-  if(counter % 3 == 0)
-    Y +=1;
+  setVel (fluid,       off,        height-10, 2, 2, speed, 0);
+  setDens(fluid,       off,        height-10, 3, 3, 1, 0, 0);
+  
   //setVel (fluid, width-off,        10, 2, 2, -speed, speed);
   //setDens(fluid, width-off,        10, 3, 3, 1, 1, 1);
   
@@ -66,11 +79,39 @@ public void draw() {
   //setVel (fluid,       off, height-10, 2, 2, speed, -speed);
   //setDens(fluid,       off, height-10, 3, 3, 0, 1, 0);
   
-  fluid.smoothDensityMap(( keyPressed && key == 's'));
-  
+//  fluid.smoothDensityMap(( keyPressed && key == 's'));
+  fluid.smoothDensityMap(true);
   fluid.update();
   image(fluid.getDensityMap(), 0, 0, width, height);
   println(frameRate);
+  
+    /* Tetris Code */
+  if(curPiece.isBottom()) {
+    vx = 5;
+    vy = 0;
+    pieceType = random.nextInt(defs.NUM_PIECE_TYPES);
+    curPiece = new Piece(vx,vy,pieceType);
+  }   
+  if(counter == defs.DROP_SPEED) {
+    vy +=1;
+    counter = 0;
+  }
+  else if(key == CODED && keyCode == DOWN && keyPressed)
+  {
+    vy += 1;
+  }
+  else if(key == CODED && keyCode == RIGHT && keyPressed)
+  {
+    vx += 1;
+  }
+  else if(key == CODED && keyCode == LEFT && keyPressed)
+  {
+    vx -= 1;
+  }
+  curPiece.setLocation(vx,vy);
+  counter++;
+  drawGrid();
+  /* End Tetris Code*/
 }
 
 

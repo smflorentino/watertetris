@@ -3,6 +3,12 @@
 public void keyPressed() {
   if ( key == 'y') edit_quader = true;
   if( online && key == ESC) key = 0;
+  
+  /* Tetris Code */
+  if(key == CODED && keyCode == UP)
+  {
+    curPiece.rotate();
+  }
 }
 
 
