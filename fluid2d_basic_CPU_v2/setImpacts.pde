@@ -9,6 +9,19 @@ public void keyPressed() {
   {
     curPiece.rotate();
   }
+  
+  if(key == CODED && keyCode == DOWN && keyPressed && !curPiece.isBottom())
+  {
+    vy += 1;
+  }
+  else if(key == CODED && keyCode == RIGHT && keyPressed)
+  {
+    vx += 1;
+  }
+  else if(key == CODED && keyCode == LEFT && keyPressed)
+  {
+    vx -= 1;
+  }
 }
 
 
@@ -61,7 +74,7 @@ void setDens(Fluid2D fluid2d, int x, int y, int sizex, int sizey, float r, float
     for (int x1 = 0; x1 < sizex; x1++) {
       int xpos = (int)(x/(float)cell_size) + x1 - sizex/2;
       int ypos = (int)(y/(float)cell_size) + y1 - sizey/2;
-      fluid2d.addDensity(0, xpos, ypos, r);
+      fluid2d.addDensity(0, xpos, ypos, 4*r);
       fluid2d.addDensity(1, xpos, ypos, g);
       fluid2d.addDensity(2, xpos, ypos, b);
     }
@@ -92,7 +105,6 @@ public void addObject(Fluid2D fluid2d, int posx, int posy, int sizex, int sizey,
   int xhig = posx + sizex;
   int ylow = posy;
   int yhig = posy + sizey;
-
   for (int x = xlow-offset ; x < xhig+offset ; x++) {
     for (int y = ylow-offset ; y < yhig+offset ; y++) {
       if ( x < 0 || x >= fluid2d.getSizeXTotal() || y < 0 || y >= fluid2d.getSizeYTotal() )

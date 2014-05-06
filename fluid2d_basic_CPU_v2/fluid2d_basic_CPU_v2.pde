@@ -42,7 +42,8 @@ int vx = 0;
 int vy = 0;
 Random random = new Random();
 int pieceType;
-
+//Allow player one second at bottom
+int bottomCounter = 0;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public void setup() {
   size(window_size_x, window_size_y, JAVA2D);
@@ -64,11 +65,11 @@ public void draw() {
     
   if ( mousePressed ) 
     fluidInfluence(fluid);
-  float speed = .1;
+  float speed = 5.1;
   
   int off = 15;
   setVel (fluid,       off,        height-10, 2, 2, speed, 0);
-  setDens(fluid,       off,        height-10, 3, 3, 1, 0, 0);
+  setDens(fluid,       off,        height-10, 3, 3, 0, 1, 0);
   
   //setVel (fluid, width-off,        10, 2, 2, -speed, speed);
   //setDens(fluid, width-off,        10, 3, 3, 1, 1, 1);
@@ -86,27 +87,24 @@ public void draw() {
   println(frameRate);
   
     /* Tetris Code */
+    //Allow player to move side to side when at bottom.
   if(curPiece.isBottom()) {
-    vx = 5;
-    vy = 0;
-    pieceType = random.nextInt(defs.NUM_PIECE_TYPES);
-    curPiece = new Piece(vx,vy,pieceType);
+    bottomCounter++;
+    if(bottomCounter == 30)
+    {
+      curPiece.finalize();
+      vx = 5;
+      vy = 0;
+      pieceType = random.nextInt(defs.NUM_PIECE_TYPES);
+      curPiece = new Piece(vx,vy,pieceType);
+      bottomCounter = 0;     
+    }
   }   
-  if(counter == defs.DROP_SPEED) {
+  println(counter);
+  if(counter > defs.DROP_SPEED && !curPiece.isBottom()) {
+    println("droppin");
     vy +=1;
     counter = 0;
-  }
-  else if(key == CODED && keyCode == DOWN && keyPressed)
-  {
-    vy += 1;
-  }
-  else if(key == CODED && keyCode == RIGHT && keyPressed)
-  {
-    vx += 1;
-  }
-  else if(key == CODED && keyCode == LEFT && keyPressed)
-  {
-    vx -= 1;
   }
   curPiece.setLocation(vx,vy);
   counter++;

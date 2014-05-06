@@ -32,6 +32,9 @@ class Space {
   boolean filled;
   int px;
   int py;
+  boolean finalized;
+  int stage;
+  boolean row;
   
   public Space(int x, int y, Piece p)
   {
@@ -45,21 +48,52 @@ class Space {
   
   public void display()
   {
+    stroke(255,255,255);
     if(this.piece == null)
     {
+      this.stage = 0;
+      int quader_size = 4;
+      int xpos = (int)(px/(float)cell_size) - quader_size/2;
+      int ypos = (int)(py/(float)cell_size) - quader_size/2;
+      xpos += 2;
+      ypos += 2;
+      addObject(fluid, xpos, ypos, quader_size, quader_size, 1);
+//      addObject(fluid,px,py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE,1);
       fill(255,255,255,0);
+      rect(this.px,this.py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE);
     }
     else
     {
+      int quader_size = 4;
+      int xpos = (int)(px/(float)cell_size) - quader_size/2;
+      int ypos = (int)(py/(float)cell_size) - quader_size/2;
+      xpos += 2;
+      ypos += 2;
+      addObject(fluid, xpos, ypos, quader_size, quader_size, 0);
+//      addObject(fluid,px,py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE,0);
       this.piece.setColor();
+      if(finalized) { fill(255,255,255); }
+      rect(this.px,this.py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE);
+      if(!row)
+      {
+          fill(0,0,255,stage/1);
+          rect(this.px,this.py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE);
+          stage ++;
+          if(stage == 255)
+          {
+            shiftDownCol(this.x);
+          }
+          
+      }
     }
-
-    rect(this.px,this.py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE);
+    
   }
   
-  public void setPiece(Piece piece)
+  public void setPiece(Piece piece,boolean moving)
   {
+    stage = 0;
     this.piece = piece;
     this.filled = piece != null;
+    this.finalized  = !moving;
   }
 }
