@@ -1,5 +1,3 @@
-import diewald_fluid.Fluid2D;
-import diewald_fluid.Fluid2D_CPU;
 //import diewald_fluid.Fluid2D_GPU;
 import processing.core.PApplet;
 import processing.core.PImage;

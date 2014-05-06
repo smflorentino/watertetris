@@ -2,7 +2,7 @@
 /**
  * Created by Scott on 5/5/2014.
  */
-public class Game {
+class Game {
     static Main P;
 
     public static void init(Main m)

@@ -1,7 +1,7 @@
 /**
  * Created by Scott on 5/5/2014.
  */
-public class defs {
+class defs {
     public static final int GRID_SPACE_SIZE = 16;
     public static final int GRID_COUNT_X = 10;
     public static final int GRID_COUNT_Y = 37;

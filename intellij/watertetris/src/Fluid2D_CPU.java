@@ -37,9 +37,6 @@
  */
 
 
-
-package diewald_fluid;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -51,7 +48,7 @@ import processing.core.PImage;
  *  
  *  
  */
-public final class Fluid2D_CPU extends Fluid2D{
+final class Fluid2D_CPU extends Fluid2D {
   private boolean use_tex_background = false;
   private PImage TEX_background_;
   private PImage TEX_densityMap_;

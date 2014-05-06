@@ -18,7 +18,7 @@
       <element id="extracted-dir" path="$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library/gluegen-rt-natives-windows-amd64.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library/jogl-all-natives-macosx-universal.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library/gluegen-rt-natives-macosx-universal.jar" path-in-jar="/" />
-      <element id="library" level="application" name="core" />
+      <element id="library" level="project" name="core" />
     </root>
   </artifact>
 </component>

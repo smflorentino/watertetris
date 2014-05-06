@@ -1,7 +1,7 @@
 /**
  * Created by Scott on 5/5/2014.
  */
-public class Piece {
+class Piece {
 
     static Main P;
 

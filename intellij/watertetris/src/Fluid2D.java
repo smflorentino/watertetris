@@ -37,13 +37,8 @@
  */
 
 
-
-package diewald_fluid;
-
 import processing.core.PApplet;
 import processing.core.PImage;
-
-import processing.opengl.PGraphicsOpenGL;
 
 
 /**
@@ -54,7 +49,7 @@ import processing.opengl.PGraphicsOpenGL;
 *  
 *  
 */
-public abstract class Fluid2D {
+abstract class Fluid2D {
   protected static final String NAME_    = "diewald_fluid";
   protected static final String VERSION_ = "v0.30";
   

@@ -3,7 +3,7 @@ import processing.core.PImage;
 /**
  * Created by Scott on 5/5/2014.
  */
-public class Space {
+class Space {
 
     static Main P;
 

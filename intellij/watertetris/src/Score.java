@@ -3,7 +3,7 @@ import javax.swing.*;
 /**
  * Created by Scott on 5/6/2014.
  */
-public class Score {
+class Score {
 
     static Main P;
     public static void init(Main m)
