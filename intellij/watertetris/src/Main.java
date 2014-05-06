@@ -46,7 +46,7 @@ public class Main extends PApplet {
     int score = 1;
     boolean displayGridLines = false;
     int winningScore;
-    Difficulty difficulty = Difficulty.EASY;
+    int difficulty = Difficulty.EASY;
     int stageMultipler = 0;
 
     public static void main(String args[]) {
@@ -138,15 +138,15 @@ public class Main extends PApplet {
     {
         switch(difficulty)
         {
-            case EASY:
+            case Difficulty.EASY:
                 winningScore = 25000;
                 stageMultipler = 4;
                 break;
-            case MEDIUM:
+            case Difficulty.MEDIUM:
                 winningScore = 50000;
                 stageMultipler = 3;
                 break;
-            case HARD:
+            case Difficulty.HARD:
                 winningScore = 75000;
                 stageMultipler = 2;
                 break;
@@ -167,7 +167,7 @@ public class Main extends PApplet {
 
         text(Messages.intro4, 100, 400, 400, 200);
 
-        text("Difficulty: " + difficulty.name(),100,450);
+        text("Difficulty: " + difficulty,100,450);
 
 
         text(Messages.intro3, 200, 525, 400, 200);

@@ -24,7 +24,7 @@ public class Game {
             //If we have dropped block, shift it down.
             if(cur.finalized && cur.piece != null)
             {
-                P.score = P.score >= 1 ? P.score -= P.difficulty.ordinal()*2 : P.score;
+                P.score = P.score >= 1 ? P.score -= P.difficulty*2 : P.score;
                 //Copy the block down.
                 below.setPiece(curPiece,false);
                 //Set current to blank
