@@ -10,4 +10,6 @@ public class Messages {
             "Don't try to rotate blocks as they near the bottom of the screen.";
 
     static final String intro3 = "Press <Spacebar> to Start!";
+
+    static final String intro4 = "Press 'g' to toggle grid lines; 'e','m',and 'h' for dfficulty";
 }

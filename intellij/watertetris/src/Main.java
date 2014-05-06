@@ -22,9 +22,11 @@ public class Main extends PApplet {
     Fluid2D fluid;
     PImage output_densityMap;
     boolean edit_quader = false;
+    float fluidSpeed = 0.05f;
+    int fluidX = 15;
+    int fluidY;
 
     int counter = 0;
-    int Y = 0;
     /* Next Row Level Needed */
     int nextRowLevel = defs.GRID_COUNT_Y - 1;
     /* Background Image */
@@ -41,7 +43,11 @@ public class Main extends PApplet {
     //Allow player one second at bottom
     int bottomCounter = 0;
     boolean startingGame = true;
-    int score = 0;
+    int score = 1;
+    boolean displayGridLines = false;
+    int winningScore;
+    Difficulty difficulty = Difficulty.EASY;
+    int stageMultipler = 0;
 
     public static void main(String args[]) {
         PApplet.main(new String[]{"Main"});
@@ -53,6 +59,7 @@ public class Main extends PApplet {
         Space.init(this);
         Piece.init(this);
         Score.init(this);
+        Game.init(this);
         //Load Images
         backgroundImage = loadImage("map.jpg");
         wallImage = loadImage("wall.jpg");
@@ -70,6 +77,8 @@ public class Main extends PApplet {
 
         background(0);
 
+        fluidY = height - 10;
+
     }
 
     public void draw() {
@@ -77,6 +86,7 @@ public class Main extends PApplet {
         //Set tutorial until user hits spacebar
         if (startingGame) {
             tutorial();
+            setupDifficulty();
             return;
         }
         //Set Background
@@ -84,11 +94,9 @@ public class Main extends PApplet {
 
         if (mousePressed)
             fluidInfluence(fluid);
-        float speed = 5.1f;
 
-        int off = 15;
-        setVel(fluid, off, height - 10, 2, 2, speed, 0);
-        setDens(fluid, off, height - 10, 6, 6, 0, .2f, 1);
+        setVel(fluid, fluidX, fluidY, 2, 2, fluidSpeed, 0);
+        setDens(fluid, fluidX,fluidY, 6, 6, 0, .2f, 1);
 
         /* Compute & Display the Water*/
         fluid.smoothDensityMap(true);
@@ -123,6 +131,26 @@ public class Main extends PApplet {
         curPiece.setLocation(curPieceX, curPieceY);
         counter++;
         Grid.drawGrid();
+        Score.displayScore();
+    }
+
+    public void setupDifficulty()
+    {
+        switch(difficulty)
+        {
+            case EASY:
+                winningScore = 25000;
+                stageMultipler = 4;
+                break;
+            case MEDIUM:
+                winningScore = 50000;
+                stageMultipler = 3;
+                break;
+            case HARD:
+                winningScore = 75000;
+                stageMultipler = 2;
+                break;
+        }
     }
 
     public void tutorial() {
@@ -137,7 +165,14 @@ public class Main extends PApplet {
 
         text(Messages.intro2, 100, 325, 400, 200);
 
-        text(Messages.intro3, 200, 500, 400, 200);
+        text(Messages.intro4, 100, 400, 400, 200);
+
+        text("Difficulty: " + difficulty.name(),100,450);
+
+
+        text(Messages.intro3, 200, 525, 400, 200);
+
+
 //        startingGame = false;
     }
 
@@ -170,6 +205,20 @@ public class Main extends PApplet {
         if (key == ' ') {
             startingGame = false;
         }
+        if( key == 'g') {
+            displayGridLines = !displayGridLines;
+        }
+
+        if(key == 'e') {
+            difficulty = Difficulty.EASY;
+        }
+        if(key == 'm') {
+            difficulty = Difficulty.MEDIUM;
+        }
+        if(key == 'h') {
+            difficulty = Difficulty.HARD;
+        }
+
         if (key == 'y') edit_quader = true;
         if (online && key == ESC) key = 0;
 

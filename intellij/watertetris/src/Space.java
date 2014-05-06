@@ -37,7 +37,14 @@ public class Space {
 
     public void display()
     {
-        P.noStroke();
+        if(!P.displayGridLines)
+        {
+            P.noStroke();
+        }
+        else
+        {
+            P.stroke(0);
+        }
 //        P.stroke(255,255,255);
         if(this.row)
         {
@@ -80,11 +87,11 @@ public class Space {
 //            if(finalized) { P.fill(255,255,255); }
 
             P.rect(this.px,this.py,defs.GRID_SPACE_SIZE,defs.GRID_SPACE_SIZE);
-            P.tint(255,stage/2);
+            P.tint(255,stage/P.stageMultipler);
             P.image(background,px,py);
             P.noTint();
             stage += 1;
-            if(stage >= 255*2)
+            if(stage >= 255*P.stageMultipler)
             {
                 Game.shiftDownCol(this.x);
                 stage = 0;

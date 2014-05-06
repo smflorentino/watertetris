@@ -3,6 +3,12 @@
  * Created by Scott on 5/5/2014.
  */
 public class Game {
+    static Main P;
+
+    public static void init(Main m)
+    {
+        P = m;
+    }
     public static void shiftDownCol(int col) {
         //Get the bottom-most block of the column and remove it
         Space bottom = Grid.GRID[col][defs.GRID_COUNT_Y-1];
@@ -18,6 +24,7 @@ public class Game {
             //If we have dropped block, shift it down.
             if(cur.finalized && cur.piece != null)
             {
+                P.score = P.score >= 1 ? P.score -= P.difficulty.ordinal()*2 : P.score;
                 //Copy the block down.
                 below.setPiece(curPiece,false);
                 //Set current to blank
