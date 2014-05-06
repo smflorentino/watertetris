@@ -4,12 +4,27 @@
  */
 public class Game {
     public static void shiftDownCol(int col) {
-        for (int i = defs.GRID_COUNT_Y - 1; i > 0; i--) {
-            Piece p = Grid.GRID[col][i - 1].piece;
-            if (Grid.GRID[col][i].finalized && !Grid.GRID[col][i].row) {
-                Grid.GRID[col][i].setPiece(p, false);
+        //Get the bottom-most block of the column and remove it
+        Space bottom = Grid.GRID[col][defs.GRID_COUNT_Y-1];
+        bottom.setPiece(null,true);
+
+        //Now, move all the other blocks in the column down.
+        for (int i = defs.GRID_COUNT_Y - 2; i > 0; i--) {
+            Space cur = Grid.GRID[col][i];
+            //If we're looking at part of a completed row, do nothing.
+            if(cur.row) { continue; }
+            Piece curPiece = cur.piece;
+            Space below = Grid.GRID[col][i+1];
+            //If we have dropped block, shift it down.
+            if(cur.finalized && cur.piece != null)
+            {
+                //Copy the block down.
+                below.setPiece(curPiece,false);
+                //Set current to blank
+                cur.setPiece(null,true);
             }
         }
+        //TODO Handle the top differently.
     }
 
-    }
+}

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="watertetris:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/watertetris_jar</output-path>
+    <root id="archive" name="watertetris.jar">
+      <element id="module-output" name="watertetris" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library/core.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2" />
+    </root>
+  </artifact>
+</component>

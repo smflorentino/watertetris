@@ -9,7 +9,7 @@ public class defs {
     public static final int GRID_OFFSET_X = 200+25;
     public static final int GRID_OFFSET_Y = 15;
 
-    public static final int DROP_SPEED = 30;
+    public static final int DROP_SPEED = 15;
 
     public static final int NUM_PIECE_TYPES = 3;
 

@@ -27,4 +27,9 @@ public class Grid {
             }
         }
     }
+
+    public static boolean offGrid(int x, int y)
+    {
+        return !(x < defs.GRID_COUNT_X && y < defs.GRID_COUNT_Y && x >= 0);
+    }
 }
