@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="core">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library/core.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library" />
+      <root url="file://$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/processing-2.1.2-windows64/processing-2.1.2/core/library" recursive="false" />
+  </library>
+</component>
